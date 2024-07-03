@@ -1,128 +1,131 @@
 # Ethereum Block Explorer
 
-The lessons this week covered the Ethereum JSON-RPC API and the `ethers.js` library giving us the ability to query the Ethereum blockchain and make transactions!
+Welcome to the Ethereum Block Explorer project! This project is a simple block explorer for the Ethereum blockchain built using React and the Alchemy SDK. It allows users to view the latest block number and details about blocks and transactions on the Ethereum mainnet.
 
-Let's put that knowledge to the test by building our very own **Ethereum Block Explorer**!
+This is the project for the 3rd week of the Ethereum Developer BootCamp at Alchemy University.
 
-Blockexplorers give us the ability to view lots of different information about the blockchain including data about:
-  * the blockchain network itself
-  * blocks in the blockchain
-  * transactions in a block
-  * accounts
-  * and many other things
-  
-[Etherscan](https://etherscan.io/) is a good example of an Ethereum blockexplorer. Check it out to get familiar with how blockexplorers generally work.
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Prerequisites](#prerequisites)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Project Structure](#project-structure)
+7. [Configuration](#configuration)
+8. [Contributing](#contributing)
+9. [License](#license)
 
-This particular project is very much open-ended. We'll add some challenges here to get your imagination going, but use Etherscan as a guide for features you might consider building in your project.
+## Introduction
 
-## Getting Started
+Block explorers give us the ability to view various information about the blockchain, including data about:
+- The blockchain network itself
+- Blocks in the blockchain
+- Transactions in a block
+- Accounts
 
-Clone this project to pull down some basic starter code.
+This project aims to create a simple block explorer similar to [Etherscan](https://etherscan.io/), allowing users to query and display information about Ethereum blocks and transactions.
 
-After that cd into the base directory of the project and run `npm install` to download all the project dependencies.
+## Features
 
-In this project we chose to use React for a front-end and added minimal front-end code to get you going, but feel free to use any front-end stack you like.
+- Display the latest Ethereum block number.
+- Retrieve and display details about specific blocks.
+- Retrieve and display transactions within a block.
+- Provide detailed information about individual transactions.
 
-Unlike the lessons this week that used the Ethereum JSON-RPC API and the `ethers.js` library to communicate with the Ethereum network, the starter code in this project uses the [AlchemySDK](https://docs.alchemy.com/reference/alchemy-sdk-quickstart?a=eth-bootcamp). The AlchemySDK's core package wraps almost all of the `ethers.js` provider functionality that we learned about and should feel very familiar to you. 
+## Prerequisites
 
-For example, the following `ethers.js` code
-```js
-const blockNumber = await provider.getBlockNumber();
-```
-can be written using the AlchemySDK like so:
-```js
-const blockNumber = await alchemy.core.getBlockNumber()
-```
-Another `ethers.js ` example
-```js
-const transcations = await provider.getBlockWithTransactions(SOME_BLOCK_NUMBER)
-```
-translates to
-```js
-const transactions = await alchemy.core.getBlockWithTransactions(SOME_BLOCK_NUMBER)
-```
-and so on.
+Before you begin, ensure you have met the following requirements:
+- You have installed Node.js and npm.
+- You have an Alchemy account and an API key for the Ethereum mainnet.
 
-There are some `ethers.js` provider functions that are not often-used and therefore not included in `alchemy.core`. But if you ever need the full ethers provider functionality you can access the provider directly with the following code:
-```js
-const ethersProvider = await alchemy.config.getProvider();
-```
+## Installation
 
-You can find lots of good docs on the AlchemySDK here:
-  * [API Quickstart](https://docs.alchemy.com/reference/alchemy-sdk-quickstart?a=eth-bootcamp)
-  * [API Overview](https://docs.alchemy.com/reference/api-overview?a=eth-bootcamp)
+To install the project, follow these steps:
 
-Alright, without further ado, let's get started!
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/your-username/ethereum-block-explorer.git
+    ```
 
-## 1. Create a unique Alchemy API key
+2. Navigate to the project directory:
+    ```sh
+    cd ethereum-block-explorer
+    ```
 
-If you have not already done so, create a unique Alchemy API Mainnet key
-for your project as [described here](https://docs.alchemy.com/reference/api-overview?a=eth-bootcamp).
+3. Install the project dependencies:
+    ```sh
+    npm install
+    ```
 
-## 2. Add your API key to as an environment variable for the project
+4. Create a `.env` file in the root directory and add your Alchemy API key:
+    ```sh
+    REACT_APP_ALCHEMY_API_KEY=your-alchemy-api-key
+    ```
 
-Create an empty `.env` file in the base directory of this project.
+## Usage
 
-Add the following line to the `.env` file replacing `YOUR_ALCHEMY_API_KEY` with your api key.
-
+To run the project in development mode, use the following command:
 ```sh
-REACT_APP_ALCHEMY_API_KEY=YOUR_ALCHEMY_API_KEY
-```
+npm start
 
-Do not remove the `REACT_APP_` prefix. React uses that to import env variables.
+This will start the development server and open the application in your default web browser at http://localhost:3000.
 
-**⚠️ Note**
+Example Interactions
+View the latest block number on the homepage.
+Enter a block number to retrieve details about that block.
+View a list of transactions within a specific block.
+Click on a transaction to see detailed information about it.
+Project Structure
+The project structure is as follows:
 
-> Your Alchemy API Mainnet Key is a sensitive piece of data. If we were\
-> building an enterprise app to conquer the world we would never place\
-> this sensitive data in the client code of our blockexplorer project that\
-> could potentially be read by anyone.
->
-> But hey, we're just learning this stuff right now, not conquering anything\
-> yet! :-) It won't be the end of the world to put the Alchemy API key in our\
-> front-end code for this project.
+java
+Copy code
+ethereum-block-explorer/
+├── node_modules/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── App.css
+│   ├── App.js
+│   ├── index.js
+│   ├── setupProxy.js
+│   └── ...
+├── .env
+├── .gitignore
+├── package.json
+├── README.md
+└── ...
+public/: Contains the public assets for the project.
+src/: Contains the source code for the React application.
+.env: Contains the environment variables for the project.
+setupProxy.js: Configures a proxy to handle CORS issues during development.
+Configuration
+Environment Variables
+The project uses environment variables to store sensitive information. Create a .env file in the root directory and add the following line:
 
-## 3. Start the webserver
+sh
+Copy code
+REACT_APP_ALCHEMY_API_KEY=your-alchemy-api-key
+Replace your-alchemy-api-key with your actual Alchemy API key.
 
-`npm start`
+Proxy Setup
+To handle CORS issues, a proxy is set up using http-proxy-middleware. The proxy configuration is in src/setupProxy.js:
 
-Running the command above will run the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+javascript
+Copy code
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-The webpage will automatically reload when you make code changes.
-
-What you'll see in the browser is Ethereum Mainnet's current block number. Not very exciting, but that's where you come in to save the day!
-
-## 4. Make the blockexplorer cool!
-
-The starter code pulls down the current block number for you.
-
-Can you get more information about the current block and display it in the page?
-Take a look at [alchemy.core.getBlock()](https://docs.alchemy.com/reference/sdk-getblock?a=eth-bootcamp) for how you might go about that.
-
-Blocks contains transactions. Can you get the list of transactions for a given block? Can you use [alchemy.core.getBlockWithTransactions()](https://docs.alchemy.com/reference/sdk-getblockwithtransactions?a=eth-bootcamp) for this?
-
-How about getting details for individual transactions? The [alchemy.core.getTransactionReceipt()](https://docs.alchemy.com/reference/sdk-gettransactionreceipt?a=eth-bootcamp) looks handy.
-
-## 5. More ideas to think about
-
-- Connecting the dots.
-  - Allow users to click on a block listed in the webpage to get the block's details including its list of transactions
-  - From the list of transactions allow users to click on specific transactions to get the details of the transaction
-- Make an accounts page where a user can look up their balance or someone else's balance
-
-## 6. Supercharge your blockexplorer using AlchemySDK's specialized APIs
-
-By using the AlchemySDK you can really supercharge your projects with additional API functionality that isn't included in the `ethers.js` package including:
-  * NFT methods
-  * WebSocket methods
-  * Alchemy's Transact API functionality
-  * endpoints for using Alchemy's Notify Webhooks
-
-Read more about the above in the [Alchemy SDK Surface docs](https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview?a=eth-bootcamp). Using the SDK can implement the following features?
-
-- Given a contract address and token id, can you get the NFT's metadata?
-- What is the floor price of an NFT right now?
-- Did a pending transaction get mined?
-- What transfers did an address receive this year?
-
-Good luck and have fun!
+module.exports = function(app) {
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'https://eth-mainnet.g.alchemy.com',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '',
+      },
+    })
+  );
+};
+This project is part of the third week of the Ethereum Developer BootCamp at Alchemy University.
