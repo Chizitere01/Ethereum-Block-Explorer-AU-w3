@@ -67,10 +67,11 @@ To install the project, follow these steps:
 To run the project in development mode, use the following command:
 ```sh
 npm start
+```
 
 This will start the development server and open the application in your default web browser at http://localhost:3000.
 
-Example Interactions
+## Example Interactions
 View the latest block number on the homepage.
 Enter a block number to retrieve details about that block.
 View a list of transactions within a specific block.
@@ -78,8 +79,7 @@ Click on a transaction to see detailed information about it.
 Project Structure
 The project structure is as follows:
 
-java
-Copy code
+```java
 ethereum-block-explorer/
 ├── node_modules/
 ├── public/
@@ -96,24 +96,25 @@ ethereum-block-explorer/
 ├── package.json
 ├── README.md
 └── ...
+```
 public/: Contains the public assets for the project.
 src/: Contains the source code for the React application.
 .env: Contains the environment variables for the project.
 setupProxy.js: Configures a proxy to handle CORS issues during development.
 Configuration
-Environment Variables
+
+##Environment Variables
 The project uses environment variables to store sensitive information. Create a .env file in the root directory and add the following line:
 
-sh
-Copy code
+```sh
 REACT_APP_ALCHEMY_API_KEY=your-alchemy-api-key
+```
 Replace your-alchemy-api-key with your actual Alchemy API key.
 
-Proxy Setup
+## Proxy Setup
 To handle CORS issues, a proxy is set up using http-proxy-middleware. The proxy configuration is in src/setupProxy.js:
 
-javascript
-Copy code
+```javascript
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
@@ -128,4 +129,6 @@ module.exports = function(app) {
     })
   );
 };
+```
+
 This project is part of the third week of the Ethereum Developer BootCamp at Alchemy University.
